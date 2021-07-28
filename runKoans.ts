@@ -13,38 +13,31 @@ const koans = [
 const parseTestFailure = (e: testFailure) => {
     const lines = e.stderr.toString().split('\n');
 
-    const result = []
+    return  lines
+        .slice(0, lines.findIndex(l => l.startsWith('Test Suites:')) - 1)
+        .join('\n');
+}
 
-    let lineIndex = 0
-    let line = lines[lineIndex]
-
-    while(!line.startsWith('Test Suites:')) {
-        result.push(line)
-
-        lineIndex++
-        line = lines[lineIndex]
+function runTest(k: string) {
+    const command = `jest -- about${k}.test.ts`;
+    try {
+        execSync(command, {stdio: 'pipe'})
+    } catch (e) {
+        return parseTestFailure(e)
     }
-
-    return result.join('\n');
 }
 
 const runKoans = () => {
-    const results = koans.map(k => {
-        const command = `jest -- about${k}.test.ts`;
-        try {
-            execSync(command, {stdio: 'pipe'})
-        } catch (e) {
-            return parseTestFailure(e)
-        }
-    })
+    const results = koans
+        .map(k => runTest(k))
         .filter(r => r !== undefined)
 
-    if (results.length === 0) {
-        console.log('Congratulations, you have reached enlightenment')
-    } else {
-        console.log(`You have not yet reached enlightenment.
-Seek wisdom by correcting the test:\n\n${results[0]}`)
-    }
+    const message = results.length === 0
+    ? 'Congratulations, you have reached enlightenment'
+    : `You have not yet reached enlightenment.
+Seek wisdom by correcting the test:\n\n${results[0]}`
+
+    console.log(message)
 }
 
 runKoans()
