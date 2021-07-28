@@ -1,0 +1,12 @@
+{
+  "name": "typescript-koans",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "@types/jest": "^26.0.24",
+    "execSync": "^1.0.2",
+    "jest": "^27.0.6",
+    "node-watch": "^0.7.1"
+  }
+}
