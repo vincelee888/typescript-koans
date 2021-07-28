@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "scripts": {
+    "start": "ts-node runKoans.ts"
+  },
   "dependencies": {
     "@types/jest": "^26.0.24",
     "execSync": "^1.0.2",

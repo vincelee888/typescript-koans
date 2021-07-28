@@ -49,7 +49,7 @@ Seek wisdom by correcting the test:\n\n${results[0]}`)
 
 runKoans()
 
-watch('koans/', (evt, name) => {
+watch('koans/', () => {
     console.clear()
     runKoans()
 })
