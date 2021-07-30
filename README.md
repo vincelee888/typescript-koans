@@ -1,11 +1,17 @@
-## scaffold new koan
+## start the koans
 
 ```shell
-yarn run new -- "discriminated unions"
+yarn start
 ```
 
-## test individual koan
+## scaffold a new koan
 
 ```shell
-yarn run test -- "discriminated unions"
+yarn new -- "discriminated unions"
+```
+
+## test an individual koan
+
+```shell
+yarn test -- "discriminated unions"
 ```
