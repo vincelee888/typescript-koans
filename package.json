@@ -5,7 +5,8 @@
   "license": "MIT",
   "scripts": {
     "start": "ts-node runKoans.ts",
-    "new": "ts-node scaffoldNewKoan.ts"
+    "new": "ts-node scaffoldNewKoan.ts",
+    "test": "ts-node testKoan.ts"
   },
   "dependencies": {
     "@types/jest": "^26.0.24",
