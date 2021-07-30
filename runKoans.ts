@@ -10,19 +10,20 @@ export function start(koans: string[], detailedReporting = false) {
     runKoans(koans, detailedReporting)
 
     watch('koans/', () => {
-        console.clear()
         runKoans(koans, detailedReporting)
     })
 }
 
 function runKoans(koans: string[], detailedReporting: boolean) {
+    console.clear()
+
     const results: string[][] = koans
         .map(k => runTest(k))
         .filter(r => r !== undefined) as string[][]
 
     const testOutput = detailedReporting
         ? results[0]
-        : results[0][1]
+        : parseOutput(results)
         
     const message = results.length === 0
     ? 'Congratulations, you have reached enlightenment'
@@ -32,7 +33,7 @@ Seek wisdom by correcting the test:\n\n${testOutput}`
     console.log(message)
 }
 
-export function runTest(k: string) {
+function runTest(k: string) {
     const command = `jest -- ${k}`;
     try {
         execSync(command, {stdio: 'pipe'})
@@ -40,6 +41,14 @@ export function runTest(k: string) {
         return parseFailingTests(e)
         .split('●')
     }
+}
+
+function parseOutput(results: string[][]) {
+    const lines = results[0][1]
+        .split('\n')
+        .map(l => l.trim())
+
+    return `${lines[0]}\n\n${lines.find(l => l.startsWith('>'))}`
 }
 
 type testFailure = {
