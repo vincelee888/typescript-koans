@@ -38,4 +38,6 @@ describe('About Variables', () => {
 
         expect(foo).toStrictEqual(FILL_ME_IN)
     })
+
+    // TODO: scope?
 })
