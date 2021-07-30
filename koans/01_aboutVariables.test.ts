@@ -1,6 +1,6 @@
-describe('About Variables', () => {
-    const FILL_ME_IN = 'fill-me-in!'
+const FILL_ME_IN = 'fill me in!'
 
+describe('About Variables', () => {
     test(`const declares a variable`, () => {
         const foo = 'bar'
 
@@ -11,11 +11,16 @@ describe('About Variables', () => {
     Code that mutates state can be difficult to follow, and can cause unwanted
     side effects. */
     test(`a const cannot be reassigned`, () => {
-        const fn = () => {
+        let errorThrown = false
+        
+        try {
             const foo = 'bar'
             foo = 'baz' // your IDE should highlight this as incorrect!
+        } catch {
+            errorThrown = true
         }
-        expect(fn).toThrowError(FILL_ME_IN)
+
+        expect(errorThrown).toStrictEqual(FILL_ME_IN)
     })
 
     test(`be careful! using const doesn't ensure immutability`, () => {
