@@ -15,26 +15,25 @@ then install the dependencies:
 npm i
 ```
 
-## Scripts
-
-### start the koans
+then start the koans
 
 ```shell
 yarn start
 ```
+## Contributing
 
-### scaffold a new koan
+Feel free to submit PRs to add or amend any koans!
+
+### Scripts
+
+#### scaffold a new koan
 
 ```shell
 yarn new -- "discriminated unions"
 ```
 
-### test an individual koan
+#### test an individual koan
 
 ```shell
 yarn test -- "discriminated unions"
 ```
-
-## Contributing
-
-Feel free to submit PRs to add or amend any koans!
