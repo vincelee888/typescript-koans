@@ -4,7 +4,8 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "ts-node runKoans.ts"
+    "start": "ts-node runKoans.ts",
+    "new": "ts-node scaffoldNewKoan.ts"
   },
   "dependencies": {
     "@types/jest": "^26.0.24",
