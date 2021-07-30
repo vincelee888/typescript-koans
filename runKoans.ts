@@ -1,14 +1,14 @@
 import {execSync} from 'child_process'
 import watch from 'node-watch'
+import fs from 'fs'
 
 type testFailure = {
     stderr: Buffer
 }
 
-const koans = [
-    'Functions',
-    'Variables'
-]
+function getKoans(): string[] {
+    return fs.readdirSync('./koans').sort()
+}
 
 const parseTestFailure = (e: testFailure) => {
     const lines = e.stderr.toString().split('\n');
@@ -19,13 +19,17 @@ const parseTestFailure = (e: testFailure) => {
 }
 
 function runTest(k: string) {
-    const command = `jest -- about${k}.test.ts`;
+    const command = `jest -- ${k}`;
     try {
         execSync(command, {stdio: 'pipe'})
     } catch (e) {
         return parseTestFailure(e)
     }
 }
+
+const koans = getKoans()
+
+console.log(koans)
 
 const runKoans = () => {
     const results = koans
