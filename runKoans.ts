@@ -1,22 +1,23 @@
 import {execSync} from 'child_process'
 import watch from 'node-watch'
-import fs from 'fs'
-
-const koans = fs.readdirSync('./koans').sort()
-
-start(koans)
 
 export function start(koans: string[], detailedReporting = false) {
-    runKoans(koans, detailedReporting)
+    const doRun = () => {
+        console.clear()
+        console.log(runKoans(koans, detailedReporting))
+    }
+
+    doRun()
 
     watch('koans/', () => {
-        runKoans(koans, detailedReporting)
+        doRun()
     })
 }
 
-function runKoans(koans: string[], detailedReporting: boolean) {
-    console.clear()
-
+export function runKoans(koans: string[], detailedReporting: boolean, config = {
+    successMessage: 'Congratulations, you have reached enlightenment',
+    failureMessagePrefix: `You have not yet reached enlightenment.\nSeek wisdom by correcting the test:\n\n`
+}) {
     const results: string[][] = koans
         .map(k => runTest(k))
         .filter(r => r !== undefined) as string[][]
@@ -25,12 +26,9 @@ function runKoans(koans: string[], detailedReporting: boolean) {
         ? results[0]
         : parseOutput(results)
         
-    const message = results.length === 0
-    ? 'Congratulations, you have reached enlightenment'
-    : `You have not yet reached enlightenment.
-Seek wisdom by correcting the test:\n\n${testOutput}`
-
-    console.log(message)
+    return results.length === 0
+    ? config.successMessage
+    : `${config.failureMessagePrefix}${testOutput}`
 }
 
 function runTest(k: string) {
@@ -39,11 +37,13 @@ function runTest(k: string) {
         execSync(command, {stdio: 'pipe'})
     } catch (e) {
         return parseFailingTests(e)
-        .split('●')
+            .split('●')
     }
 }
 
 function parseOutput(results: string[][]) {
+    if(!results.length) return ''
+
     const lines = results[0][1]
         .split('\n')
         .map(l => l.trim())

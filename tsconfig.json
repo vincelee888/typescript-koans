@@ -1,12 +1,22 @@
 {
   "compilerOptions": {
-    "target": "ES2015",
-    "module": "commonjs",
     "strict": true,
-    "esModuleInterop": true,
+    "removeComments": true,
+    "moduleResolution": "node",
+    "noUnusedParameters": true,
+    "sourceMap": true,
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true
+    "target": "es2017",
+    "outDir": "lib",
+    "lib": ["es2017"],
+    "experimentalDecorators": true,
+    "resolveJsonModule": true,
+    "noImplicitAny": true,
+    "strictPropertyInitialization": false,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true
   },
-  "$schema": "https://json.schemastore.org/tsconfig",
-  "display": "Recommended"
+  "include": ["./**/*.ts"],
+  "exclude": ["node_modules/**/*"],
+  "outDir": "./build"
 }

@@ -1,18 +1,21 @@
 {
   "name": "typescript-koans",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "runKoans.ts",
   "license": "MIT",
   "scripts": {
-    "start": "ts-node runKoans.ts",
+    "start": "ts-node index.ts",
     "new": "ts-node scaffoldNewKoan.ts",
-    "test": "ts-node testKoan.ts"
+    "test": "ts-node testKoan.ts",
+    "test:runner": "jest unit"
   },
   "dependencies": {
     "@types/jest": "^26.0.24",
     "execSync": "^1.0.2",
     "jest": "^27.0.6",
+    "jest-circus": "^27.0.6",
     "node-watch": "^0.7.1",
+    "ts-jest": "^27.0.4",
     "typescript": "^4.3.5"
   }
 }
