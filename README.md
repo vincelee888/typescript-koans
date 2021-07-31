@@ -26,6 +26,12 @@ Feel free to submit PRs to add or amend any koans!
 
 ### Scripts
 
+#### test the koan runner
+
+```shell
+yarn test:runner
+```
+
 #### scaffold a new koan
 
 ```shell
