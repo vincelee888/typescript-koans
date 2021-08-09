@@ -4,9 +4,9 @@ const koanTitle = cleanKoanName(process.argv[2])
 const nextKoanId = fs.readdirSync('./koans').length + 1
 const koanFileName = buildFileName(nextKoanId, koanTitle)
 
-const output = `const FILL_ME_IN = 'fill me in!'
+const output = `describe('About ${koanTitle}', () => {
+  const FILL_ME_IN = 'fill me in!'
 
-describe('About ${koanTitle}', () => {
   test(\`\`, () => {
       const foo = 'bar'
 s

@@ -1,6 +1,6 @@
-const FILL_ME_IN = 'fill me in!'
-
 describe('About Variables', () => {
+    const FILL_ME_IN = 'fill me in!'
+
     test(`const declares a variable`, () => {
         const foo = 'bar'
 
