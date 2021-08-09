@@ -6,7 +6,7 @@ const koanFileName = buildFileName(nextKoanId, koanTitle)
 
 const output = `const FILL_ME_IN = 'fill me in!'
 
-describe('About ${koanTitle}, () => {
+describe('About ${koanTitle}', () => {
   test(\`\`, () => {
       const foo = 'bar'
 s
